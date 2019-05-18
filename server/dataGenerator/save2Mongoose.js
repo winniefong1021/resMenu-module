@@ -3,7 +3,15 @@ const fs = require('fs');
 const mongoose = require('mongoose'); // mongod --config /usr/local/etc/mongod.conf
 mongoose.connect('mongodb://localhost/fetcher2');
 var resDesData = require('./res44Tehama.js');
-resDesData = resDesData[0];
+resDesData = resDesData[0].map((i) => {
+    delete i.apiKey
+    delete i.logoUrl
+    delete i.minFreeDelivery
+    delete i.url
+    delete i.API
+    return i;
+});
+
 var resMenuData15 = require('./menu44Tehama15.js');
 var resMenuData16 = require('./menu44Tehama16.js');
 var resMenuData17 = require('./menu44Tehama17.js');
