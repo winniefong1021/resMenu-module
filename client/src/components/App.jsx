@@ -1,30 +1,31 @@
 import React from 'react';
-
+import $ from 'jquery';
+import Header from './Header.jsx';
+import Menu from './Menu.jsx';
+import Sidebar from './Sidebar.jsx';
 
 class App extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
-        this.state = ({
-            restaurantName : 'Bask',
-            repo: {}
-        });
-        this.searchR = this.searchR.bind(this);
-    }
-    searchR(q){
-        
     }
 
-    componentDidMount(){
-        this.searchR(this.state.restaurantName)
+
+    componentDidMount() {
+        console.log(this.props);
     }
-    render(){
+    render() {
         return (
-            <h1>Hi</h1>
+            <div>
+                <Header repo = {this.props.repo}/>
+                <Menu repo = {this.props.repo}/>
+                <Sidebar repo = {this.props.repo} />
+            </div>
+
         )
     }
 }
 
-export default App ;
+export default App;
 
 
 // https://github.com/ganderzz/react-scroll-to
