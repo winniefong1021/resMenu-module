@@ -4,16 +4,14 @@ var db = require('./db/mongo.js');
 var path = require('path');
 var app = express();
 var React = require('react');
-var ReactDom = require('react-dom/server');
-var App = require('./client/App');
-import React from 'react';
-import { renderToString } from 'react-dom/server';
+// var App = require('./client/App.js');
+var reactServer = require('react-dom/server');
 
-var HTMLtemplate = require(path.join(__dirname, '../client/dist/template.js'));
+var HTMLtemplate = require(path.join(__dirname, '../client/src/template.js'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, '../client/dist'))); // this line becomes useless as we serve the template 
+app.use(express.static(path.join(__dirname, '../public'))); // this line becomes useless as we serve the template 
 
 app.get('/:name', function(req, res) {
     var q = req.params.name;
@@ -30,9 +28,9 @@ app.get('/:name', function(req, res) {
             res.sendStatus(505);
         } else {
             data = data[0];
-            var body = renderToString( < App / > );
+            // var body = reactServer.renderToString( < App / > );
 
-            var str = HTMLtemplate({ body: body, title: data.name, address: data.streetAddress })
+            var str = HTMLtemplate({ body: 'hi', title: data.name, address: data.streetAddress })
             res.send(str);
         }
     })
