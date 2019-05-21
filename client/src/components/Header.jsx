@@ -54,7 +54,12 @@ var Header =  ({res})=>{
             </Title>
             <StyledTextLine></StyledTextLine>
             <div>
-                star symbols {res.star} review symbol {res.reviewCount} {price_icon} {pricelevel_verbal} {diningStyle_icon} {res.cuisine}
+                <span>star symbols</span>
+                <span>{res.star}</span>
+                <span>review symbol</span>
+                <span>{res.reviewCount} </span>
+                <span>{price_icon} {pricelevel_verbal} </span>
+                <span>{diningStyle_icon} {res.cuisine}</span>
             </div>
             <div>
                 Top Tags: {item}
