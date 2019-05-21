@@ -15,7 +15,6 @@ const SidebarBox = styled.div`
     width: 100%; 
     text-align: center; 
     margin: 0; padding: 30px 0; 
-      
     /* "transparent" only works here because == rgba(0,0,0,0) */
     background-image: linear-gradient(to bottom, transparent, white);  
   }
@@ -23,10 +22,10 @@ const SidebarBox = styled.div`
 
 const Float = styled.button`
 	position:fixed;
-	width:100px;
-	height:60px;
+	width:0.5* vw;
+	height:0.1* vh;
 	bottom:40px;
-	right:80px;
+    right:0.5* vw;
 	background-color:white;
     color:black;
     text: 6px;
@@ -121,7 +120,7 @@ var SubMenu = ({ subMenu, collapse, expand }) => {
         <div>
             {longMenu}
         <Float>
-                <a href="#" className="button" onClick={expand}>Expand</a>
+                <a href="#" className="button" onClick={expand}>Collapse</a>
         </Float>
         </div>)
     } else {
