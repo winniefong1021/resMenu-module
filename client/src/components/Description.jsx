@@ -28,7 +28,7 @@ class Description extends React.Component {
                     {description.join(' ')}
                     <div onClick={this.show}>
                         -show less
-                </div>
+                    </div>
                 </div>);
         } else {
             return (

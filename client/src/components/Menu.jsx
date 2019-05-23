@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-// var styledD = styled.default;
 
 const SidebarBox = styled.div`
   background-color: white;
@@ -25,7 +24,7 @@ const Float = styled.button`
 	width:0.5* vw;
 	height:0.1* vh;
 	bottom:40px;
-    right:0.5* vw;
+    left:vw;
 	background-color:white;
     color:black;
     text: 6px;
@@ -52,10 +51,16 @@ const Flexcolumn = styled.div`
 const Button = styled.button`
   background: transparent;
   border-radius: 3px;
-  border: 1px solid lightgrey;
+  border: 2px solid lightgrey;
   :hover {
-    border: 1px solid red;
+    border: 2px solid red;
   }
+  &:focus {
+    outline:0
+    border: 2px solid red;
+
+  };
+  
   color: black;
   margin: 0 1em;
   padding: 0.25em 1em;
@@ -117,23 +122,22 @@ var SubMenu = ({ subMenu, collapse, expand }) => {
     })
     if (!collapse) {
         return (
-        <div>
-            {longMenu}
-        <Float>
-                <a href="#" className="button" onClick={expand}>Collapse</a>
-        </Float>
-        </div>)
+            <div>
+                {longMenu}
+                <Float>
+                    <a href="#" className="button" onClick={expand}>Collapse</a>
+                </Float>
+            </div>)
     } else {
         return (
             <SidebarBox>
                 <SubSubMenu subsubMenu={subMenu.menus[0]}></SubSubMenu>
                 <SubSubMenu subsubMenu={subMenu.menus[1]}></SubSubMenu>
                 <div className="Readmore">
-                    <Float>
-                        <a href="#" className="button" onClick={expand}>Expand</a>
-                    </Float>
                 </div>
-
+                <Float>
+                    <a href="#" className="button" onClick={expand}>Expand</a>
+                </Float>
             </SidebarBox>
 
         )
@@ -172,11 +176,7 @@ var SubSubMenu = ({ subsubMenu }) => {
                     {rightSide}
                 </Flexcolumn>
             </Flexrow>
-            {/* <Flexrow>
-                <Flexcolumn size={1}>
-                    {rightSide}
-                </Flexcolumn>
-            </Flexrow> */}
+
         </div>
     )
 }
