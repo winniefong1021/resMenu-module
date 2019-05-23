@@ -125,7 +125,7 @@ var SubMenu = ({ subMenu, collapse, expand }) => {
             <div>
                 {longMenu}
                 <Float>
-                    <a href="#" className="button" onClick={expand}>Collapse</a>
+                    <a href="#" className="menuButton" onClick={expand}>Collapse</a>
                 </Float>
             </div>)
     } else {
@@ -136,7 +136,7 @@ var SubMenu = ({ subMenu, collapse, expand }) => {
                 <div className="Readmore">
                 </div>
                 <Float>
-                    <a href="#" className="button" onClick={expand}>Expand</a>
+                    <a href="#" className="menuButton" onClick={expand}>Expand</a>
                 </Float>
             </SidebarBox>
 
