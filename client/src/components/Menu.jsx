@@ -68,13 +68,13 @@ const Button = styled.button`
 class Menu extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({
+        this.state = {
             listing: this.props.menus.map(i => {
                 return i.name
             }),
             subMenu: this.props.menus[0],
             collapse: true
-        })
+        }
         this.switchMenu = this.switchMenu.bind(this);
         this.expandMenu = this.expandMenu.bind(this);
         this.makeButtons = this.makeButtons.bind(this);

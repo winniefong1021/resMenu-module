@@ -1,7 +1,7 @@
 import React from 'react';
 import Description from './Description.jsx';
 import { review_icon, price_icon, cuisine_icon, crossStreet_icon, diningStyle_icon, neighborhood_icon, crossSt_icon,hours_icon } from './Icons.jsx';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import StarSymbol from './StarSymbol.jsx';
 
 const Container = styled.div`

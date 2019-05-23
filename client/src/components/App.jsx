@@ -25,10 +25,10 @@ const GlobalStyles = createGlobalStyle`
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({
+        this.state = {
             q: this.props.match.params.name,
             res: {}
-        })
+        }
     }
 
 
