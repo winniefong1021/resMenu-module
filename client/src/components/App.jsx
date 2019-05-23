@@ -1,33 +1,60 @@
 import React from 'react';
-
+import $ from 'jquery';
+import Header from './Header.jsx';
+import Menu from './Menu.jsx';
+import Sidebar from './Sidebar.jsx';
+import exampleData from './exampleData.js';
 
 class App extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = ({
-            restaurantName : 'Bask',
-            repo: {}
-        });
-        this.searchR = this.searchR.bind(this);
-    }
-    searchR(q){
-        
+            q: this.props.match.params.name,
+            res: {}
+        })
     }
 
-    componentDidMount(){
-        this.searchR(this.state.restaurantName)
+
+    search() {
+        $.ajax({
+            method: 'GET',
+            url: '/API/res/' + this.state.q,
+            success: (data) => {
+                data = JSON.parse(data);
+                this.setState({
+                    res: data
+                })
+            },
+            error: (err) => {
+                console.log(err);
+            }
+        })
     }
-    render(){
-        return (
-            <h1>Hi</h1>
-        )
+
+    componentDidMount() {
+        this.search();
+    }
+    render() {
+        if (Object.keys(this.state.res).length === 0) {
+            return <div></div>
+        } else {
+            return (
+                <div>
+                    <Header res={this.state.res} />
+                    <Menu menus={this.state.res.menus} />
+                    {/* <Sidebar res={this.state.res} /> */}
+                </div>
+
+            )
+        }
+
     }
 }
 
-export default App ;
+export default App;
 
 
-// https://github.com/ganderzz/react-scroll-to
+//https://github.com/ganderzz/react-scroll-to
 //https://newyork-anthonyng.github.io/articles/deliberate_practice/005_react_scroll_to/source.html
 //https://codeburst.io/what-i-learned-from-reading-react-scroll-to-5018ed3726fa
 // switch (this.state.page) {
