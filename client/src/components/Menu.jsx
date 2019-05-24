@@ -19,16 +19,24 @@ const SubMenuWrapper = styled.section`
   margin: 0 0 0.25rem;
   font-size : 1rem
 `;
+
+const LongMenuBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+`
 const MenuBox = styled.div`
   background-color: white;
   display: flex;
   max-height: 500px;
+  flex-direction: column;
   position: relative;
   overflow: hidden;
   .Readmore{
     position: absolute; 
     bottom: 0; 
     left: 0;
+    height: 400px;
     width: 100%; 
     text-align: center; 
     margin: 0; padding: 30px 0; 
@@ -36,12 +44,9 @@ const MenuBox = styled.div`
     background-image: linear-gradient(to bottom, transparent, white);  
   }
 `
-const ShortMenuBox  = styled.div`
-    background-color: white;
-    position: relative;
-`
 
 const Float = styled.button`
+    align-self: center;
     border: 1px solid #d8d9db;
     width: 20%;
     font-family: 'Montserrat',sans-serif;
@@ -59,14 +64,9 @@ const Float = styled.button`
     };
     margin: 1em;
     padding: 0.5em;
-
     position: fixed;
-    left: 47.5%;
 	bottom:40px;
 	background-color:white;
-    // color:black;
-    // font-size: 18px;
-    // border: 1px solid grey;
     :hover {
         border: 2px solid red;
       }
@@ -158,17 +158,16 @@ var SubMenu = ({ subMenu, collapse, expand }) => {
     })
     if (!collapse) {
         return (
-            <ShortMenuBox>
+            <LongMenuBox>
                 {longMenu}
                 <Float>
                     <div href="#" className="menuButton" onClick={expand}>Collapse</div>
                 </Float>
-            </ShortMenuBox>)
+            </LongMenuBox>)
     } else {
         return (
             <MenuBox>
                 <SubSubMenu subsubMenu={subMenu.menus[0]}></SubSubMenu>
-                <SubSubMenu subsubMenu={subMenu.menus[1]}></SubSubMenu>
                 <div className="Readmore">
                 </div>
                 <Float>
