@@ -24,8 +24,6 @@ var Sidebar = ({ res }) => {
     }
     var topTag = Array(res.topTags);
     var item = <h2>nothing</h2>;
-    console.log('what', Array.isArray(topTag));
-    console.log(topTag.length)
     if (res.topTags !== undefined) {
         item = res.topTags.map( (i, idx)=>(
             <Button key={idx.toString()}>
@@ -34,7 +32,6 @@ var Sidebar = ({ res }) => {
             
         ))
     }
-    console.log(Array.isArray(res.topTags));
     return (
         <div>
             <div>

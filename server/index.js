@@ -35,32 +35,7 @@ app.get('/API/res/:name', function(req, res) {
 });
 
 
-app.listen(3001, function() {
-    console.log('listening on port 3001!');
+app.listen(3002, function() {
+    console.log('listening on port 3002!');
 });
 
-
-
-// app.get('/res/:name', function(req, res) {
-//     var q = req.params.name;
-
-//     // TO INVESTIGATE not sure why there is a request for favicon.ico
-//     if (q === 'favicon.ico') {
-//         res.send();
-//         return;
-//     }
-
-//     db.res(q, (err, data) => {
-
-//         res.header("Access-Control-Allow-Origin", "*");
-//         if (err) {
-//             res.sendStatus(505);
-//         } else {
-//             data = data[0];
-//             var body = reactServer.renderToString( React.createElement('Application', {data}) );
-//             console.log(body);
-//             var str = HTMLtemplate({ body: body, title: data.name, address: data.streetAddress })
-//             res.send(str);
-//         }
-//     })
-// })

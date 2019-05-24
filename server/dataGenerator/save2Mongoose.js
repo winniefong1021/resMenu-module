@@ -42,7 +42,8 @@ function onInsert(err, docs) {
     }
 }
 
-var menu = ['Lunch', 'Breakfast', 'Dinner', 'Seasonal Menu']
+var menu = ['Lunch', 'Breakfast', 'Dinner', 'Seasonal Menu', 'Bar', 'Spring Menu', 'Winter Menu', 'Special', 'Today"s Special', 
+'Late Night', 'Take Out', 'Brunch', 'Afternoon Tea', 'Happy Hour', 'Dessert']
 
 
 var MenuSchema = mongoose.Schema({
@@ -90,9 +91,17 @@ for (let i = 0; i < resMenuData.length; i++) {
     if (resMenuData[i] !== undefined) {
         for (let j = 0; j < resMenuData[i].length; j++) {
             for (let k = 0; k < resMenuData[i][j].items.length; k++) {
+                var itemDes = resMenuData[i][j].items[k]["name"];
+                itemDes = itemDes.substring(itemDes.indexOf(". ") + 1);
+                itemDes = itemDes.substring(itemDes.indexOf(".") + 1);
+                itemDes = itemDes.replace("[^a-zA-Z]", "");
+                resMenuData[i][j].items[k]["name"] = itemDes;
+                // if (i===0 && j===0) {
+                //     console.log(resMenuData[i][j].items[k]["name"].replace("[^a-zA-Z]", ""))
+                //  } 
                 if (Math.random() > 0.88) {
                     resMenuData[i][j].items[k]['modifiers'] = modifierSeed();
-                    console.log(i, j, k)
+                    // console.log(i, j, k)
                 }
             }
         }

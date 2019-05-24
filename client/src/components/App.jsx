@@ -1,3 +1,4 @@
+import { createGlobalStyle } from "styled-components";
 import React from 'react';
 import $ from 'jquery';
 import Header from './Header.jsx';
@@ -5,13 +6,22 @@ import Menu from './Menu.jsx';
 import Sidebar from './Sidebar.jsx';
 import exampleData from './exampleData.js';
 
+
+const GlobalStyles = createGlobalStyle`
+  body {
+    @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+    font-family: 'Montserrat', sans-serif;
+  }
+`
+
+
 class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = ({
+        this.state = {
             q: this.props.match.params.name,
             res: {}
-        })
+        }
     }
 
 
@@ -40,6 +50,7 @@ class App extends React.Component {
         } else {
             return (
                 <div>
+                    <GlobalStyles></GlobalStyles>
                     <Header res={this.state.res} />
                     <Menu menus={this.state.res.menus} />
                     {/* <Sidebar res={this.state.res} /> */}
