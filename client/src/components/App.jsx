@@ -11,13 +11,6 @@ const GlobalStyles = createGlobalStyle`
   body {
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
     font-family: 'Montserrat', sans-serif;
-
-    // @import url('https://fonts.googleapis.com/css?family=Notable');
-    // font-family: 'Notable', sans-serif;
-
-    // @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap')
-    // font-family: 'Oswald', sans-serif;
-
   }
 `
 

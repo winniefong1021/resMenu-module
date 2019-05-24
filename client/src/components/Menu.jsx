@@ -1,10 +1,28 @@
 import React from 'react';
 import styled from 'styled-components';
+import SubSubMenu from './SubSubMenu.jsx';
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-const SidebarBox = styled.div`
+const Wrapper = styled.section`
+  padding: 0.5rem;
+  border-bottom: 1px solid #d8d9db;
+  margin: 0 0 0.25rem;
+  font-size : 2rem
+`;
+
+const SubMenuWrapper = styled.section`
+  padding: 0.5rem;
+  border-bottom: 1px solid #d8d9db;
+  margin: 0 0 0.25rem;
+  font-size : 1rem
+`;
+const MenuBox = styled.div`
   background-color: white;
   display: flex;
-  max-height: 200px;
+  max-height: 500px;
   position: relative;
   overflow: hidden;
   .Readmore{
@@ -18,52 +36,69 @@ const SidebarBox = styled.div`
     background-image: linear-gradient(to bottom, transparent, white);  
   }
 `
+const ShortMenuBox  = styled.div`
+    background-color: white;
+    position: relative;
+`
 
 const Float = styled.button`
-	position:fixed;
-	width:0.5* vw;
-	height:0.1* vh;
-	bottom:40px;
-    left:vw;
-	background-color:white;
-    color:black;
-    text: 6px;
-    border: .2rem solid white;
+    border: 1px solid #d8d9db;
+    width: 20%;
+    font-family: 'Montserrat',sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid lightgrey;
     :hover {
-        border: .2rem solid red;
-      }
-	// border-radius:50px;
-	text-align:center;
-	// box-shadow: 2px 2px 3px #999;
-`
-
-
-const Flexrow = styled.div`
-  background-color: white;
-  display: flex;
-`
-
-const Flexcolumn = styled.div`
-  text-align: left;
-  border: .2rem solid white;
-  width: ${(props) => props.size / 2 * 100}vw;
-`
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid lightgrey;
-  :hover {
     border: 2px solid red;
-  }
-  &:focus {
+    }
+    &:focus {
     outline:0
     border: 2px solid red;
+    };
+    margin: 1em;
+    padding: 0.5em;
 
-  };
-  
-  color: black;
-  margin: 0 1em;
-  padding: 0.25em 1em;
+    position: fixed;
+    left: 47.5%;
+	bottom:40px;
+	background-color:white;
+    // color:black;
+    // font-size: 18px;
+    // border: 1px solid grey;
+    :hover {
+        border: 2px solid red;
+      }
+	text-align:center;
+`
+
+
+
+const SubMenuButton = styled.section`
+    border-bottom: 1px solid #d8d9db;
+    display: flex-wrap;
+    align-items: center;
+    height: 4rem;
+`;
+const Button = styled.button`
+    align-items: center;
+    border: 1px solid #d8d9db;
+    font-family: 'Montserrat',sans-serif;
+    font-size: .875rem;
+    font-weight: 500;
+    line-height: 1;
+    background: transparent;
+    border: 1px solid lightgrey;
+    :hover {
+    border: 2px solid red;
+    }
+    &:focus {
+    outline:0
+    border: 2px solid red;
+    };
+    margin: 1em;
+    padding: 0.5em;
 `
 class Menu extends React.Component {
     constructor(props) {
@@ -83,7 +118,6 @@ class Menu extends React.Component {
         this.setState({
             subMenu: this.props.menus[e.target.name]
         })
-
     }
     expandMenu(e) {
         this.setState({
@@ -101,18 +135,20 @@ class Menu extends React.Component {
     }
     render() {
         return (
-            <div>
-                <div>
+            <Container>
+                <Wrapper>Menu</Wrapper>
+                <SubMenuButton>
                     {this.makeButtons()}
-                </div>
-                <div><SubMenu subMenu={this.state.subMenu} collapse={this.state.collapse} expand={this.expandMenu} /></div>
-            </div>
+                </SubMenuButton>
+                <SubMenuWrapper>
+                    <SubMenu subMenu={this.state.subMenu} collapse={this.state.collapse} expand={this.expandMenu} />
+                </SubMenuWrapper>
+            </Container>
         );
     }
 }
 
 var SubMenu = ({ subMenu, collapse, expand }) => {
-    var descrip = subMenu.description;
     subMenu.menus = subMenu.menus.slice(0, 6);
     var longMenu = subMenu.menus.map((i, idx) => {
         return (
@@ -122,62 +158,25 @@ var SubMenu = ({ subMenu, collapse, expand }) => {
     })
     if (!collapse) {
         return (
-            <div>
+            <ShortMenuBox>
                 {longMenu}
                 <Float>
-                    <a href="#" className="menuButton" onClick={expand}>Collapse</a>
+                    <div href="#" className="menuButton" onClick={expand}>Collapse</div>
                 </Float>
-            </div>)
+            </ShortMenuBox>)
     } else {
         return (
-            <SidebarBox>
+            <MenuBox>
                 <SubSubMenu subsubMenu={subMenu.menus[0]}></SubSubMenu>
                 <SubSubMenu subsubMenu={subMenu.menus[1]}></SubSubMenu>
                 <div className="Readmore">
                 </div>
                 <Float>
-                    <a href="#" className="menuButton" onClick={expand}>Expand</a>
+                    <div href="#" className="menuButton" onClick={expand}>Expand</div>
                 </Float>
-            </SidebarBox>
-
+            </MenuBox>
         )
     }
 }
 
-var SubSubMenu = ({ subsubMenu }) => {
-    var leftSide = subsubMenu.items.filter((i, idx) => idx % 2 === 0).map((i, idx) => {
-        return (
-            <div key={idx.toString()} >
-                <div>{i.name}</div>
-                <div>{i.description}</div>
-                <div>{i.basePrice}</div>
-            </div>
-        )
-    });
-    var rightSide = subsubMenu.items.filter((i, idx) => idx % 2 === 1).map((i, idx) => {
-        return (
-            <div key={(idx + 10).toString()} >
-                <div>{i.name}</div>
-                <div>{i.description}</div>
-                <div>{i.basePrice}</div>
-            </div>
-        )
-    });
-
-
-    return (
-        <div>
-            <h5>{subsubMenu.name}</h5>
-            <Flexrow>
-                <Flexcolumn size={1}>
-                    {leftSide}
-                </Flexcolumn>
-                <Flexcolumn size={1}>
-                    {rightSide}
-                </Flexcolumn>
-            </Flexrow>
-
-        </div>
-    )
-}
 export default Menu;

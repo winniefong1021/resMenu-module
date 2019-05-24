@@ -91,7 +91,11 @@ for (let i = 0; i < resMenuData.length; i++) {
     if (resMenuData[i] !== undefined) {
         for (let j = 0; j < resMenuData[i].length; j++) {
             for (let k = 0; k < resMenuData[i][j].items.length; k++) {
-                resMenuData[i][j].items[k]["name"] = resMenuData[i][j].items[k]["name"].replace("[^a-zA-Z]", "")
+                var itemDes = resMenuData[i][j].items[k]["name"];
+                itemDes = itemDes.substring(itemDes.indexOf(". ") + 1);
+                itemDes = itemDes.substring(itemDes.indexOf(".") + 1);
+                itemDes = itemDes.replace("[^a-zA-Z]", "");
+                resMenuData[i][j].items[k]["name"] = itemDes;
                 // if (i===0 && j===0) {
                 //     console.log(resMenuData[i][j].items[k]["name"].replace("[^a-zA-Z]", ""))
                 //  } 

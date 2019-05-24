@@ -3,14 +3,9 @@ import styled from "styled-components";
 
 const Ss = {};
 
-Ss.span = styled.span`
-  width: 1.8rem;
-  height: 1.8rem;
-`;
-
 Ss.svg = styled.svg`
-  /* display: inline-block;
-  vertical-align: middle; */
+  align-self: center;
+  display: inline-block;
   flex-shrink: 0;
 `;
 
@@ -18,8 +13,8 @@ function IconStar(props) {
   return (
     <Ss.svg
       viewBox="0 0 1000 1000"
-      width="1.8rem"
-      height="1.8rem"
+      width="1.5rem"
+      height="1.5rem"
       aria-hidden="true"
     >
       <path

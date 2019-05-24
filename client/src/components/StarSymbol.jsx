@@ -5,6 +5,7 @@ import IconStar from "./IconStar.jsx";
 const S = {};
 
 S.WrapperDiv = styled.div`
+  margin-right: 1rem;
   display: flex;
   align-items: center;
 `;

@@ -22,7 +22,7 @@ describe('<Menu />', () => {
     });
 
 
-    it('if clicked expand the menus', () => {
+    it('if clicked expand the menu', () => {
         const wrapper = mount(<Menu menus={exampleData.menus} />);
         const menuBtn = wrapper.find('.menuButton');
     
