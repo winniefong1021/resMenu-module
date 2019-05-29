@@ -66,7 +66,7 @@ var Restaurant = mongoose.model('Restaurant', RestaurantSchema);
 // https://stackoverflow.com/questions/21429630/querying-a-collection-without-passing-schema-in-mongoose
 var res = function(q, cb) {
     console.log('q=', q);
-    Restaurant.find({ name: q }, (err, data) => {
+    Restaurant.find({ resIndex: q }, (err, data) => {
         if (err) {
             cb(err, null)
         } else {

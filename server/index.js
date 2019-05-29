@@ -15,13 +15,15 @@ app.use(express.static(path.join(__dirname, '../client/dist'))); // this line be
 
 
 
-app.get('/res/:name', function(req, res) {
+app.get('/restaurant/:name', function(req, res) {
     res.header("X-Content-Type", "text/javascript");
     res.sendFile(path.join(__dirname, '/../client/dist/index.html'))
+    console.log('Ok');
 });
 
-app.get('/API/res/:name', function(req, res) {
+app.get('/API/restaurant/:name', function(req, res) {
     var q = req.params.name;
+    console.log('query ID', q)
     db.res(q, (err, data) => {
         res.header("Access-Control-Allow-Origin", "*");
         if (err) {
@@ -35,7 +37,7 @@ app.get('/API/res/:name', function(req, res) {
 });
 
 
-app.listen(3002, function() {
-    console.log('listening on port 3002!');
+app.listen(3003, function() {
+    console.log('listening on port 3003!');
 });
 
