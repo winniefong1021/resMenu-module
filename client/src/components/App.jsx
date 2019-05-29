@@ -19,7 +19,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            q: this.props.match.params.name,
+            q: window.location.pathname.split('/restaurant/')[1],
             res: {}
         }
     }
@@ -28,7 +28,7 @@ class App extends React.Component {
     search() {
         $.ajax({
             method: 'GET',
-            url: '/API/res/' + this.state.q,
+            url: '/API/restaurant/' + this.state.q,
             success: (data) => {
                 data = JSON.parse(data);
                 this.setState({
