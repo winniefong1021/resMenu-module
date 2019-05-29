@@ -5,9 +5,10 @@ import Header from './Header.jsx';
 import Menu from './Menu.jsx';
 import Sidebar from './Sidebar.jsx';
 import exampleData from './exampleData.js';
+import styled from 'styled-components'
 
 
-const GlobalStyles = createGlobalStyle`
+const GlobalStyles = styled.div`
   body {
     @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
     font-family: 'Montserrat', sans-serif;
@@ -53,9 +54,10 @@ class App extends React.Component {
             console.log('got something', this.state.res, this.state.res.menus)
             return (
                 <div>
-                    {/* <GlobalStyles></GlobalStyles> */}
-                    <Header res={this.state.res} />
-                    <Menu menus={this.state.res.menus} />
+                    <GlobalStyles>
+                        <Header res={this.state.res} />
+                        <Menu menus={this.state.res.menus} />
+                    </GlobalStyles>
                     {/* <Sidebar res={this.state.res} /> */}
                 </div>
 
