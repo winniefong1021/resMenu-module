@@ -5,7 +5,6 @@ mongoose.connect('mongodb://localhost/fetcher2');
 var resDesData = require('./res44Tehama.js');
 resDesData = resDesData[0].map((i) => {
     delete i.apiKey
-    delete i.logoUrl
     delete i.minFreeDelivery
     delete i.url
     delete i.API
@@ -42,8 +41,8 @@ function onInsert(err, docs) {
     }
 }
 
-var menu = ['Lunch', 'Breakfast', 'Dinner', 'Seasonal Menu', 'Bar', 'Spring Menu', 'Winter Menu', 'Special', 'Today"s Special', 
-'Late Night', 'Take Out', 'Brunch', 'Afternoon Tea', 'Happy Hour', 'Dessert']
+var menu = ['Lunch', 'Breakfast', 'Dinner', 'Seasonal Menu', 'Bar', 'Spring Menu', 'Winter Menu', 'Special', 'Today"s Special',
+    'Late Night', 'Take Out', 'Brunch', 'Afternoon Tea', 'Happy Hour', 'Dessert']
 
 
 var MenuSchema = mongoose.Schema({
@@ -108,8 +107,23 @@ for (let i = 0; i < resMenuData.length; i++) {
     }
 }
 
-resDesData = resDesData.map(i => {
+resDesData = resDesData.map((i, idx) => {
+    i.resIndex = ((idx).toString().length < 3) ? new Array(3 - idx.toString().length).fill(0).join('') + idx.toString() :
+        (idx).toString();
     i.menus = menuSeed();
+    var foodPics = new Array(Math.floor(Math.random() * 10) + 1).fill(0);
+    foodPics = foodPics.map(i => {
+        var randomSize = Math.floor(Math.random() * 100);
+        var Size = 300 + randomSize;
+        return "http://lorempixel.com/" + Size + '/' + Size + "/food?"
+    });
+    i.foodUrl = foodPics;
+    if (i.neighborhood === 'South of Market') {
+        i.neighborhood = 'SoMa';
+    }
+    i.foodR = Math.floor(Math.random() * 50) / 10;
+    i.serviceR = Math.floor(Math.random() * 50) / 10;
+    i.decorR = Math.floor(Math.random() * 50) / 10;
     return i;
 })
 
@@ -152,9 +166,12 @@ var RestaurantSchema = mongoose.Schema({
     privatePartyContact: String,
     neighborhood: String,
     crossStreet: String,
-    menus: [MenuSchema]
+    menus: [MenuSchema],
+    foodUrl: [String]
 });
 
 var Restaurant = mongoose.model('Restaurant', RestaurantSchema);
 Restaurant.collection.insert(resDesData, onInsert);
+
+
 

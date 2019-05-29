@@ -31,6 +31,7 @@ class App extends React.Component {
             url: '/API/restaurant/' + this.state.q,
             success: (data) => {
                 data = JSON.parse(data);
+                console.log('response data', data);
                 this.setState({
                     res: data
                 })
@@ -46,11 +47,13 @@ class App extends React.Component {
     }
     render() {
         if (Object.keys(this.state.res).length === 0) {
+            console.log('empttyyyy')
             return <div></div>
         } else {
+            console.log('got something', this.state.res, this.state.res.menus)
             return (
                 <div>
-                    <GlobalStyles></GlobalStyles>
+                    {/* <GlobalStyles></GlobalStyles> */}
                     <Header res={this.state.res} />
                     <Menu menus={this.state.res.menus} />
                     {/* <Sidebar res={this.state.res} /> */}
