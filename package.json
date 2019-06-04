@@ -9,7 +9,9 @@
     },
     "scripts": {
         "react-dev": "webpack -d --watch",
-        "test": "jest"
+        "test": "jest",
+        "start": "node server/index.js",
+        "seed": "node server/dataGenerator/save2mongoose.js"
     },
     "dependencies": {
         "babel-core": "^6.26.3",
